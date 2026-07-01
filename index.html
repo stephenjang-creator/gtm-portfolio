@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephen Jang — Agentic Workflow Operator Portfolio</title>
+<meta name="description" content="I inherited dozens of manual RevOps, Deal Desk, renewals, and PMO processes, then designed and stood up human-in-the-loop workflows for the highest-leverage ones. A representative sample of how I think about operations at scale.">
+
+<!-- Open Graph / link preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Turning Manual GTM Operations into Agentic Workflows">
+<meta property="og:description" content="Dozens of manual RevOps & PMO processes, mapped and scored. The highest-leverage ones rebuilt as human-in-the-loop workflows — operational, not slideware.">
+<meta property="og:image" content="Stephen_Jang_Portfolio.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Turning Manual GTM Operations into Agentic Workflows">
+<meta name="twitter:description" content="Dozens of manual RevOps & PMO processes, mapped and scored. The highest-leverage ones rebuilt as human-in-the-loop workflows — operational, not slideware.">
+<meta name="twitter:image" content="Stephen_Jang_Portfolio.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0E1116; --panel:#161B22; --line:#2A323D; --fog:#8A97A6;
+    --paper:#F2F4F7; --signal:#22C55E; --signal-dim:#16351f; --amber:#F0B429;
+    --serif:'Fraunces','DejaVu Serif',Georgia,serif;
+    --sans:'Inter','DejaVu Sans',system-ui,sans-serif;
+    --mono:'JetBrains Mono','DejaVu Sans Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--ink);color:var(--paper);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;}
+  body{display:flex;flex-direction:column;align-items:center;min-height:100vh;
+    padding:40px 20px 64px;}
+
+  /* download bar above the card */
+  .toolbar{width:100%;max-width:1100px;display:flex;justify-content:space-between;
+    align-items:center;gap:16px;margin-bottom:22px;flex-wrap:wrap;}
+  .toolbar .who{font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--fog);}
+  .toolbar .actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;text-decoration:none;
+    padding:9px 16px;border-radius:8px;border:1px solid var(--line);color:var(--paper);
+    background:var(--panel);transition:border-color .15s,background .15s;white-space:nowrap;}
+  .btn:hover{border-color:var(--signal);}
+  .btn.primary{background:var(--signal-dim);border-color:#245c33;color:var(--signal);}
+  .btn.primary:hover{background:#1c4527;}
+
+  /* the card (fixed design width, scaled on small screens) */
+  .card-wrap{width:100%;max-width:1100px;overflow:hidden;border-radius:14px;
+    border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.45);}
+  .page{width:1100px;background:var(--ink);color:var(--paper);position:relative;
+    padding:60px 72px 52px;transform-origin:top left;}
+  .page::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:44px 44px;opacity:.12;pointer-events:none;}
+  .page > *{position:relative;z-index:1;}
+
+  .eyebrow{display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--fog);border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:38px;}
+  .eyebrow .live{color:var(--signal);}
+  .eyebrow .live::before{content:"●  ";font-size:9px;vertical-align:middle;}
+
+  .name{font-family:var(--serif);font-weight:900;font-size:30px;letter-spacing:-.01em;line-height:1;color:var(--paper);}
+  .name .r{font-family:var(--mono);font-size:15px;font-weight:400;color:var(--fog);}
+
+  .thesis{font-family:var(--serif);font-weight:600;font-size:47px;line-height:1.08;
+    letter-spacing:-.015em;margin:30px 0 8px;max-width:920px;}
+  .thesis .hl{color:var(--signal);font-style:italic;}
+  .subthesis{font-size:17.5px;line-height:1.55;color:#C4CDD8;max-width:720px;margin-top:14px;}
+  .subthesis b{color:var(--paper);font-weight:600;}
+
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:40px 0 44px;}
+  .metric{background:var(--panel);padding:22px 24px;}
+  .metric .n{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1;color:var(--paper);}
+  .metric .n .u{font-size:19px;color:var(--signal);margin-left:2px;}
+  .metric .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--fog);margin-top:10px;line-height:1.4;}
+
+  .seclabel{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--fog);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  .ledger{display:flex;flex-direction:column;gap:9px;margin-bottom:12px;}
+  .row{display:grid;grid-template-columns:1fr 34px 1fr 130px;align-items:center;gap:16px;
+    background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:15px 20px;}
+  .manual{font-size:15.5px;color:#C4CDD8;font-weight:500;}
+  .arrow{font-family:var(--mono);color:var(--signal);font-size:17px;text-align:center;}
+  .agentic{font-size:15.5px;color:var(--paper);font-weight:600;}
+  .agentic .who{font-family:var(--mono);font-size:10.5px;color:var(--fog);display:block;
+    margin-top:3px;letter-spacing:.04em;font-weight:400;}
+  .tag{justify-self:end;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    padding:5px 11px;border-radius:20px;white-space:nowrap;}
+  .tag.ship{color:var(--signal);background:var(--signal-dim);border:1px solid #245c33;}
+  .tag.partial{color:#7FD4E8;background:#0e2b33;border:1px solid #1d5563;}
+  .tag.human{color:var(--amber);background:#3a2f0d;border:1px solid #5c4a16;}
+
+  .ledgernote{font-family:var(--mono);font-size:11.5px;color:var(--fog);margin:14px 0 46px;
+    display:flex;gap:22px;flex-wrap:wrap;}
+  .ledgernote span{display:flex;align-items:center;gap:7px;}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+  .dot.g{background:var(--signal);} .dot.a{background:var(--amber);} .dot.c{background:#7FD4E8;}
+
+  .split2{display:grid;grid-template-columns:1fr;gap:30px;margin-bottom:46px;}
+  .flow{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr 20px 1fr 20px 1.05fr;align-items:stretch;}
+  .node{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 16px 18px;
+    display:flex;flex-direction:column;min-height:118px;}
+  .node.accent{border-color:#245c33;background:linear-gradient(180deg,#12251a 0%,var(--panel) 100%);}
+  .ni{font-family:var(--mono);font-size:11px;color:var(--fog);letter-spacing:.1em;}
+  .node.accent .ni{color:var(--signal);}
+  .nt{font-family:var(--serif);font-weight:600;font-size:19px;margin:8px 0;line-height:1.1;color:var(--paper);}
+  .node.accent .nt{color:var(--signal);}
+  .nd{font-size:12.5px;line-height:1.45;color:var(--fog);}
+  .fconn{display:flex;align-items:center;justify-content:center;color:var(--signal);
+    font-family:var(--mono);font-size:16px;font-weight:700;}
+
+  .craftcopy{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start;}
+  .craftcopy h3{grid-column:1 / -1;font-family:var(--serif);font-weight:600;font-size:24px;
+    line-height:1.15;margin-bottom:2px;letter-spacing:-.01em;}
+  .craftcopy p{font-size:15px;line-height:1.62;color:#C4CDD8;}
+  .craftcopy p b{color:var(--paper);font-weight:600;}
+  .buildline{grid-column:1 / -1;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+    color:var(--fog);margin-top:4px;padding-top:14px;border-top:1px solid var(--line);}
+  .buildline::before{content:"▸ ";color:var(--signal);}
+
+  .cta{border-top:1px solid var(--line);padding-top:30px;display:flex;
+    justify-content:space-between;align-items:flex-end;gap:40px;}
+  .cta .hook{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.22;
+    letter-spacing:-.01em;max-width:600px;}
+  .cta .hook .hl{color:var(--signal);}
+  .contact{text-align:right;font-family:var(--mono);font-size:12.5px;line-height:1.9;
+    color:var(--fog);white-space:nowrap;}
+  .contact .k{color:var(--paper);}
+  .contact a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);}
+  .contact a:hover{border-color:var(--signal);color:var(--signal);}
+  .contact a .k{color:inherit;}
+
+  footer{max-width:1100px;width:100%;margin-top:26px;font-family:var(--mono);font-size:11px;
+    color:var(--fog);letter-spacing:.04em;text-align:center;line-height:1.7;}
+  footer a{color:var(--fog);}
+
+  /* ---- responsive: scale the fixed-width card down on narrow viewports ---- */
+  @media (max-width:1180px){
+    .page{transform:scale(calc((100vw - 42px)/1100));}
+    .card-wrap{height:auto;}
+    /* keep the wrapper hugging the scaled card height via aspect trick */
+  }
+  /* On phones the 1100px card scaled down is unreadable; switch to a stacked, fluid layout */
+  @media (max-width:720px){
+    body{padding:24px 14px 48px;}
+    .page{width:100%;transform:none;padding:32px 22px 30px;}
+    .thesis{font-size:30px;}
+    .subthesis{font-size:15px;}
+    .metrics{grid-template-columns:repeat(2,1fr);}
+    .row{grid-template-columns:1fr;gap:6px;padding:14px 16px;}
+    .arrow{display:none;}
+    .tag{justify-self:start;}
+    .flow{grid-template-columns:1fr;gap:8px;}
+    .fconn{transform:rotate(90deg);height:14px;}
+    .node{min-height:0;}
+    .craftcopy{grid-template-columns:1fr;gap:14px;}
+    .cta{flex-direction:column;align-items:flex-start;gap:22px;}
+    .contact{text-align:left;white-space:normal;}
+    .eyebrow{flex-direction:column;gap:6px;align-items:flex-start;}
+    .name{font-size:24px;}
+    .name .r{display:block;margin-top:6px;font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <span class="who">Operator Portfolio</span>
+    <span class="actions">
+      <a class="btn primary" id="requestBtn" href="mailto:stephen.jang@gmail.com?subject=Request%3A%20Full%2090-day%20implementation%20plan&amp;body=Hi%20Stephen%2C%20I%27d%20like%20to%20review%20the%20full%2090-day%20agentic%20workflow%20implementation%20plan.">Request the full 90-day implementation plan →</a>
+    </span>
+  </div>
+
+  <div class="card-wrap">
+  <div class="page">
+
+    <div class="eyebrow">
+      <span>Operator One-Pager</span>
+      <span class="live">Open to RevOps · PMO · Chief of Staff</span>
+    </div>
+
+    <div class="name">Stephen Jang&nbsp;&nbsp;/&nbsp;&nbsp;<span class="r">VP, Revenue Operations &amp; PMO · Chief of Staff to the CEO</span></div>
+
+    <div class="thesis">I turn manual GTM operations into <span class="hl">agentic workflows</span> — and I ship the code, not just the strategy.</div>
+    <div class="subthesis">Two decades of running Deal Desk, RevOps, renewals, and executive programs at a nine-figure SaaS company. <b>I inherited dozens of manual processes, then designed and stood up human-in-the-loop workflows for the highest-leverage ones.</b> Here's a representative sample.</div>
+
+    <div class="metrics">
+      <div class="metric"><div class="n" style="font-size:32px;">Dozens</div><div class="l">Manual workflows<br>mapped &amp; scored</div></div>
+      <div class="metric"><div class="n" style="font-size:32px;">Live<span class="u">▸</span></div><div class="l">Highest-leverage<br>ones in production</div></div>
+      <div class="metric"><div class="n">1<span class="u">↺</span></div><div class="l">Reusable pattern<br>behind every one</div></div>
+      <div class="metric"><div class="n">100<span class="u">%</span></div><div class="l">Money &amp; comp calls<br>kept human-approved</div></div>
+    </div>
+
+    <div class="seclabel">From manual glue → live workflow</div>
+    <div class="ledger">
+      <div class="row">
+        <div class="manual">Guessing which accounts would actually renew</div>
+        <div class="arrow">▸</div>
+        <div class="agentic">Customer retention forecast<span class="who">deal-stage signals · approvals · adoption trends</span></div>
+        <div class="tag ship">LIVE</div>
+      </div>
+      <div class="row">
+        <div class="manual">Manually spotting when a deal turned competitive</div>
+        <div class="arrow">▸</div>
+        <div class="agentic">Competitive risk detection<span class="who">reads deal activity · flags competitive signals</span></div>
+        <div class="tag ship">LIVE</div>
+      </div>
+      <div class="row">
+        <div class="manual">Reading through activity to find a deal's true state</div>
+        <div class="arrow">▸</div>
+        <div class="agentic">Bottom-of-funnel review<span class="who">surfaces risks, gaps &amp; next steps for the rep</span></div>
+        <div class="tag partial">HUMAN-ASSISTED</div>
+      </div>
+      <div class="row">
+        <div class="manual">Pulling rep metrics by hand before every 1:1</div>
+        <div class="arrow">▸</div>
+        <div class="agentic">Coaching prioritization<span class="who">surfaces focus areas · manager sets the plan</span></div>
+        <div class="tag partial">HUMAN-ASSISTED</div>
+      </div>
+    </div>
+    <div class="ledgernote">
+      <span><span class="dot g"></span>Live</span>
+      <span><span class="dot c"></span>Human-assisted — the judgment stays with a person</span>
+      <span><span class="dot a"></span>Human keeps the judgment where money, customers, or comp are involved</span>
+    </div>
+
+    <div class="seclabel">One pattern behind all of it</div>
+    <div class="split2">
+      <div class="flow">
+        <div class="node"><div class="ni">01</div><div class="nt">Trigger</div><div class="nd">a deal moves, a meeting ends, a week closes</div></div>
+        <div class="fconn">→</div>
+        <div class="node"><div class="ni">02</div><div class="nt">Retrieve</div><div class="nd">pull from the systems of record — CRM, call data, project tools, data vendors</div></div>
+        <div class="fconn">→</div>
+        <div class="node"><div class="ni">03</div><div class="nt">Reason</div><div class="nd">assemble, cross-reference, draft the recommendation</div></div>
+        <div class="fconn">→</div>
+        <div class="node"><div class="ni">04</div><div class="nt">Structure</div><div class="nd">emit clean, auditable fields — never loose prose</div></div>
+        <div class="fconn">→</div>
+        <div class="node accent"><div class="ni">05</div><div class="nt">Human review</div><div class="nd">a person approves anything that matters</div></div>
+      </div>
+      <div class="craftcopy">
+        <h3>Dozens of workflows, one architecture.</h3>
+        <p>Each one is the same shape: <b>a trigger, a retrieval, a reasoning step, a structured result, and a human at the gate.</b> That's why a new workflow is a configuration, not a rebuild.</p>
+        <p>The last step is the one I never skip. The system does the gathering and the first draft; <b>the judgment stays with a person</b> wherever revenue, a customer, or someone's comp is on the line.</p>
+        <div class="buildline">Built in Python · human-in-the-loop by design</div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="hook">The full plan scores each workflow and sequences a 90-day implementation rollout. <span class="hl">Reach out and I'll walk you through it.</span></div>
+      <div class="contact">
+        <div><span class="k">Stephen Jang</span></div>
+        <div>Remote · or onsite in Phoenix &amp; SF Bay Area</div>
+        <div>linkedin.com/in/<a href="https://www.linkedin.com/in/stephenjang/" target="_blank" rel="noopener"><span class="k">stephenjang</span></a></div>
+        <div><a href="mailto:stephen.jang@gmail.com"><span class="k">stephen.jang@gmail.com</span></a></div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <footer>
+    Built in Python · deployed on GitHub Pages ·
+    <a href="https://www.linkedin.com/in/stephenjang/" target="_blank" rel="noopener">linkedin.com/in/stephenjang</a>
+  </footer>
+
+<script>
+  // Keep the scaled fixed-width card's wrapper from leaving dead space on tablets.
+  function fitCard(){
+    var wrap=document.querySelector('.card-wrap');
+    var page=document.querySelector('.page');
+    if(window.innerWidth>720 && window.innerWidth<=1180){
+      var scale=(window.innerWidth-42)/1100;
+      wrap.style.height=(page.offsetHeight*scale)+'px';
+    } else {
+      wrap.style.height='auto';
+    }
+  }
+  window.addEventListener('resize',fitCard);
+  window.addEventListener('load',fitCard);
+  document.fonts && document.fonts.ready.then(fitCard);
+
+  // Request button: try the visitor's mail app; if nothing takes focus
+  // (no default mail client configured), fall back to Gmail compose in a new tab.
+  (function(){
+    var btn=document.getElementById('requestBtn');
+    if(!btn) return;
+    var gmail='https://mail.google.com/mail/?view=cm&fs=1&to=stephen.jang@gmail.com'
+      +'&su='+encodeURIComponent('Request: Full 90-day implementation plan')
+      +'&body='+encodeURIComponent("Hi Stephen, I'd like to review the full 90-day agentic workflow implementation plan.");
+    btn.addEventListener('click',function(e){
+      var start=Date.now(), hidden=false;
+      function onHide(){ hidden=true; }
+      document.addEventListener('visibilitychange',onHide,{once:true});
+      window.addEventListener('blur',onHide,{once:true});
+      // If the mail client opened, the tab loses focus quickly. If after a
+      // short delay we're still here and visible, open Gmail compose instead.
+      setTimeout(function(){
+        document.removeEventListener('visibilitychange',onHide);
+        window.removeEventListener('blur',onHide);
+        if(!hidden && (Date.now()-start)<1500){
+          window.open(gmail,'_blank','noopener');
+        }
+      },600);
+    });
+  })();
+</script>
+</body>
+</html>
