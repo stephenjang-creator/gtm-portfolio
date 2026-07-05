@@ -126,6 +126,40 @@
     color:var(--fog);margin-top:4px;padding-top:14px;border-top:1px solid var(--line);}
   .buildline::before{content:"▸ ";color:var(--signal);}
 
+  /* ---- Selected Work / project card ---- */
+  .work{margin-bottom:46px;}
+  .project{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:30px 32px;position:relative;overflow:hidden;}
+  .project::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;
+    background:radial-gradient(circle,rgba(34,197,94,.10) 0%,transparent 68%);pointer-events:none;}
+  .project > *{position:relative;z-index:1;}
+  .proj-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--fog);margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .proj-eyebrow .tag{color:var(--signal);background:var(--signal-dim);border:1px solid #245c33;
+    border-radius:20px;padding:3px 10px;font-size:10.5px;letter-spacing:.06em;}
+  .proj-title{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.01em;
+    margin-bottom:12px;color:var(--paper);}
+  .proj-lead{font-size:16px;line-height:1.6;color:#C4CDD8;margin-bottom:22px;max-width:760px;}
+  .proj-lead b{color:var(--paper);font-weight:600;}
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:22px;}
+  .proj-grid h4{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--signal);margin-bottom:8px;}
+  .proj-grid p{font-size:14px;line-height:1.6;color:var(--fog);}
+  .proj-sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--signal);margin:0 0 8px;padding-top:20px;border-top:1px solid var(--line);}
+  .proj-stack{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--fog);margin-bottom:20px;}
+  .proj-rigor{list-style:none;padding:0;margin:0 0 24px;}
+  .proj-rigor li{font-size:14px;line-height:1.55;color:#C4CDD8;padding-left:22px;position:relative;margin-bottom:7px;}
+  .proj-rigor li::before{content:"▸";color:var(--signal);position:absolute;left:0;font-family:var(--mono);font-size:12px;}
+  .proj-links{display:flex;gap:12px;flex-wrap:wrap;}
+  .proj-links a{font-family:var(--mono);font-size:13px;text-decoration:none;padding:9px 18px;
+    border-radius:8px;transition:border-color .15s,background .15s;}
+  .proj-links a.primary{background:var(--signal-dim);border:1px solid #245c33;color:var(--signal);}
+  .proj-links a.primary:hover{background:#1c4527;}
+  .proj-links a.ghost{border:1px solid var(--line);color:var(--paper);}
+  .proj-links a.ghost:hover{border-color:var(--signal);}
+  @media (max-width:720px){ .proj-grid{grid-template-columns:1fr;gap:16px;} }
+
   .cta{border-top:1px solid var(--line);padding-top:30px;display:flex;
     justify-content:space-between;align-items:flex-end;gap:40px;}
   .cta .hook{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.22;
@@ -250,6 +284,43 @@
         <p>Each one is the same shape: <b>a trigger, a retrieval, a reasoning step, a structured result, and a human at the gate.</b> That's why a new workflow is a configuration, not a rebuild.</p>
         <p>The last step is the one I never skip. The system does the gathering and the first draft; <b>the judgment stays with a person</b> wherever revenue, a customer, or someone's comp is on the line.</p>
         <div class="buildline">Built in Python · human-in-the-loop by design</div>
+      </div>
+    </div>
+
+    <div class="seclabel">Selected work</div>
+    <div class="work">
+      <div class="project">
+        <div class="proj-eyebrow">Project · RAG / Applied LLMs · Built in Python <span class="tag">LIVE</span></div>
+        <div class="proj-title">Deal Desk Helper</div>
+        <div class="proj-lead">A citation-grounded contract-analysis tool that answers two questions a Deal Desk actually asks — <b>"what does this contract say about X?"</b> and <b>"which contracts across our book have clause X?"</b> — bridging the gap between how a business user phrases a question and how contracts are actually written.</div>
+
+        <div class="proj-grid">
+          <div>
+            <h4>The hard problem</h4>
+            <p>Contracts rarely use the query's words. "Termination for convenience" appears as "terminate without cause," "in sole discretion," "without penalty." Keyword search misses them; even a cross-encoder reranker scores them near zero. An LLM judge recognizes the legal equivalence — recovering matches pure retrieval scored at zero.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <p>Hybrid retrieval (BM25 + vector, RRF fusion) → cross-encoder rerank → citation-enforced generation, with an LLM-judge membership step for cross-corpus queries and query-rewriting that turns Deal Desk shorthand into contract language. Human-in-the-loop: it cites sources or declines rather than guessing.</p>
+          </div>
+        </div>
+
+        <div class="proj-sub">Stack</div>
+        <div class="proj-stack">Python · LangGraph · ChromaDB · Cohere (embed + rerank) · Anthropic Claude · Streamlit · custom LLM-as-judge eval + set-based precision/recall · CI faithfulness gate</div>
+
+        <div class="proj-sub">Engineering rigor</div>
+        <ul class="proj-rigor">
+          <li>Evaluation grounded in CUAD's expert annotations (510 real contracts, CC BY 4.0)</li>
+          <li>Faithfulness measured (claim-level), not asserted; declines handled correctly</li>
+          <li>CI gate fails the build if answer quality regresses</li>
+          <li>Diagnosed a reranker result-cap, a semantic gap, and term polysemy — each with data</li>
+          <li>Zero proprietary data; licensing + provenance handled as a first-class concern</li>
+        </ul>
+
+        <div class="proj-links">
+          <a class="primary" href="https://rag-revops.streamlit.app" target="_blank" rel="noopener">▸ Live demo</a>
+          <a class="ghost" href="https://github.com/stephenjang-creator/rag-revops" target="_blank" rel="noopener">↗ Source</a>
+        </div>
       </div>
     </div>
 
