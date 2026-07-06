@@ -322,6 +322,43 @@
           <a class="ghost" href="https://github.com/stephenjang-creator/rag-revops" target="_blank" rel="noopener">↗ Source</a>
         </div>
       </div>
+
+      <div class="project" style="margin-top:26px;">
+        <div class="proj-eyebrow">Project · Model Evaluation / Applied LLMs · Built in Python <span class="tag">LIVE</span></div>
+        <div class="proj-title">Local SLM Evaluation for RevOps</div>
+        <div class="proj-lead">A reproducible benchmark answering a question every RevOps leader now faces: <b>when confidential CRM and pipeline data can't leave the building, which local model is actually good enough to run against it?</b> Three small language models, on-premise, measured on the tasks a GTM assistant actually performs.</div>
+
+        <div class="proj-grid">
+          <div>
+            <h4>The hard problem</h4>
+            <p>The most useful GTM automations touch the most sensitive data — named accounts, deal values, comp, churn signals — which often can't be sent to a third-party API. Running locally solves confidentiality, cost, and latency at once, but only if the local model is good enough. And small models are not interchangeable: the differences stay hidden until you measure them against your real tasks.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <p>A Python harness runs 40 prompts across 5 RevOps-relevant categories (extraction, summarization, reasoning, instruction-following, safety) against each model, 3 runs each, capturing the model's own timing counters. Objective tasks auto-scored via regex/exact match; summarization and safety hand-scored to a published rubric, then normalized so categories compare fairly.</p>
+          </div>
+        </div>
+
+        <div class="proj-sub">Key finding</div>
+        <div class="proj-stack" style="color:#C4CDD8;">The 7B model tied the 3B on overall quality (87.5% vs 87.6%) while running <b style="color:var(--paper);">2.3× slower</b> — capacity ≠ quality. And the ranking inverts by task: the best reasoner (Phi, 83%) is the worst at strict formatting (57%). The deliverable isn't a winner — it's a workload-to-model decision framework.</div>
+
+        <div class="proj-sub">Stack</div>
+        <div class="proj-stack">Python · Ollama · Pydantic (constrained generation + validation + retry) · custom benchmark + scoring + aggregation harness · rubric-normalized quality scoring · GPU-instrumented (RTX 4080, CUDA 12.4)</div>
+
+        <div class="proj-sub">Engineering rigor</div>
+        <ul class="proj-rigor">
+          <li>Timing taken from the model's native counters, not wall-clock — generation speed isolated from load cost</li>
+          <li>Median-of-runs methodology; determinism verified (temp 0 gave byte-identical output across 10 runs)</li>
+          <li>Two-guard reliability pattern: schema-constrained generation + Pydantic validation + single retry, failing gracefully</li>
+          <li>Honest limitations stated up front — GPU not CPU, so speed ratios generalize but absolutes don't</li>
+          <li>Safety scored as calibration (over- vs under-refusal), surfacing small-model over-refusal on benign prompts</li>
+        </ul>
+
+        <div class="proj-links">
+          <a class="primary" href="local-slm.html">▸ Read the case study</a>
+          <a class="ghost" href="local-slm-assessment.pdf" download>↓ Download assessment (PDF)</a>
+        </div>
+      </div>
     </div>
 
     <div class="cta">
