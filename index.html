@@ -306,13 +306,15 @@
         </div>
 
         <div class="proj-sub">Stack</div>
-        <div class="proj-stack">Python · LangGraph · ChromaDB · Cohere (embed + rerank) · Anthropic Claude · Streamlit · custom LLM-as-judge eval + set-based precision/recall · CI faithfulness gate</div>
+        <div class="proj-stack">Python · LangGraph · ChromaDB · Cohere (embed + rerank) · Anthropic Claude · Streamlit · custom LLM-as-judge eval + set-based precision/recall · Langfuse tracing · CI faithfulness + latency/coverage gates</div>
 
         <div class="proj-sub">Engineering rigor</div>
         <ul class="proj-rigor">
           <li>Evaluation grounded in CUAD's expert annotations (100 real contracts, CC BY 4.0)</li>
           <li>Faithfulness measured (claim-level), not asserted; declines handled correctly</li>
-          <li>CI gate fails the build if answer quality regresses</li>
+          <li>Every stage traced (Langfuse): retrieved chunks, rerank reordering, exact prompt/response, tokens + cost per call</li>
+          <li>SRE metrics from request traffic — p50 21s / p95 60s (single-doc vs. analytical fan-out), 100% citation coverage, 0% failure rate</li>
+          <li>CI fails the build if faithfulness regresses, citation coverage drops below 80%, or p95 latency exceeds 90s</li>
           <li>Diagnosed a reranker result-cap, a semantic gap, and term polysemy — each with data</li>
           <li>Zero proprietary data; licensing + provenance handled as a first-class concern</li>
         </ul>
