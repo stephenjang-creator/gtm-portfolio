@@ -362,6 +362,42 @@
         </div>
       </div>
     </div>
+    
+      <div class="project">
+        <div class="proj-eyebrow">Project · Full-Stack / Agents + MCP · Built in Python <span class="tag">LIVE</span></div>
+        <div class="proj-title">Intelligent Forecast</div>
+        <div class="proj-lead">An executive-facing forecast dashboard for a B2B SaaS pipeline. It reads a pipeline export, applies <b>deterministic rules grounded in MEDDPICC and deal hygiene</b>, and does the two things a forecast call needs: <b>flags which committed deals are at risk and why</b>, and <b>projects the number</b> for a chosen timeframe (booked + open pipeline → a risk-adjusted forecast). The rules own every flag; the model only explains and routes — so every number is auditable.</div>
+
+        <div class="proj-cols">
+          <div>
+            <h4>The hard problem</h4>
+            <p>Three executives look at the same forecast and ask different questions — the CFO wants a number defensible to the board, the CRO wants where to point the team, the RevOps VP wants who owns the fix. A black-box model answers none of them credibly. The hard part is making a forecast that's simultaneously prioritized, projectable, and auditable down to the individual rule that fired.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <p>A fully-tested deterministic rule engine (each rule maps 1:1 to a MEDDPICC or hygiene signal) scores a 600-deal pipeline; a FastAPI service + React SPA deploy as one container; an MCP tool server exposes the detector so agents can query it conversationally. The LLM only narrates and routes questions to one of four agents — it never sets a flag.</p>
+          </div>
+        </div>
+
+        <div class="proj-finding"><b>Key result.</b> The detector scores itself against labeled ground truth — and region-aware scoring lifts it from <b>F1 0.847 → 0.960</b> (precision 0.74 → 0.92, recall 1.00). Judging each deal against its own region's norm — not one global average — is what recovers the +11.3 F1 points: it stops over-flagging EMEA's normally-long proposals and catches NA's fast-region stalls the global norm misses.</div>
+
+        <div class="proj-sub">Stack</div>
+        <div class="proj-stack">Python · React + Vite · FastAPI · pandas · Model Context Protocol (MCP) · Anthropic SDK · Docker · pytest / ruff / black · deterministic rule engine + multi-agent layer</div>
+
+        <div class="proj-sub">Engineering rigor</div>
+        <ul class="proj-rigor">
+          <li>Deterministic core makes zero network calls and runs end-to-end with no API key — the LLM paths degrade gracefully when unset</li>
+          <li>Real evaluation harness: precision / recall / F1 + confusion vs. labeled ground truth, reported per-rule, regenerable with one command</li>
+          <li>Every flag traces to one auditable rule built only from the deal's own values; a manager can verify it against the CRM</li>
+          <li>Period-over-period bookings math (YoY / QoQ / MoM / YTD) and a risk-adjusted projection by timeframe (stage win-rates, haircut on flagged deals, uplift on fast movers)</li>
+          <li>MCP server exposes the detector as read-only tools — structured JSON back, zero LLM calls in any tool</li>
+          <li>All thresholds live in config so a RevOps admin can retune without touching rule logic; all data synthetic</li>
+        </ul>
+
+        <div class="proj-links">
+          <a href="https://github.com/stephenjang-creator/sales_forecast" target="_blank" rel="noopener">↗ Source</a>
+        </div>
+      </div>
 
     <div class="cta">
       <div class="hook">The full plan scores each workflow and sequences a 90-day implementation rollout. <span class="hl">Reach out and I'll walk you through it.</span></div>
