@@ -9,11 +9,11 @@
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Turning Manual GTM Operations into Agentic Workflows">
-<meta property="og:description" content="Dozens of manual RevOps & PMO processes, mapped and scored. The highest-leverage ones rebuilt as human-in-the-loop workflows — operational, not slideware.">
+<meta property="og:description" content="Dozens of manual RevOps & PMO processes, mapped and scored. The highest-leverage ones rebuilt as human-in-the-loop workflows: operational, not slideware.">
 <meta property="og:image" content="Stephen_Jang_Portfolio.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Turning Manual GTM Operations into Agentic Workflows">
-<meta name="twitter:description" content="Dozens of manual RevOps & PMO processes, mapped and scored. The highest-leverage ones rebuilt as human-in-the-loop workflows — operational, not slideware.">
+<meta name="twitter:description" content="Dozens of manual RevOps & PMO processes, mapped and scored. The highest-leverage ones rebuilt as human-in-the-loop workflows: operational, not slideware.">
 <meta name="twitter:image" content="Stephen_Jang_Portfolio.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -223,7 +223,7 @@
 
     <div class="name">Stephen Jang&nbsp;&nbsp;/&nbsp;&nbsp;<span class="r">VP, Revenue Operations &amp; PMO · Chief of Staff to the CEO</span></div>
 
-    <div class="thesis">I turn manual GTM operations into <span class="hl">agentic workflows</span> — and I ship the code, not just the strategy.</div>
+    <div class="thesis">I turn manual GTM operations into <span class="hl">agentic workflows</span> and I ship the code, not just the strategy.</div>
     <div class="subthesis">Two decades of running Deal Desk, RevOps, renewals, and executive programs at a nine-figure SaaS company. <b>I inherited dozens of manual processes, then designed and stood up human-in-the-loop workflows for the highest-leverage ones.</b> Here's a representative sample.</div>
 
     <div class="metrics">
@@ -233,7 +233,7 @@
       <div class="metric"><div class="n">100<span class="u">%</span></div><div class="l">Money &amp; comp calls<br>kept human-approved</div></div>
     </div>
 
-    <div class="seclabel">From manual glue → live workflow</div>
+    <div class="seclabel">From manual glue to live workflow</div>
     <div class="ledger">
       <div class="row">
         <div class="manual">Guessing which accounts would actually renew</div>
@@ -292,32 +292,32 @@
       <div class="project">
         <div class="proj-eyebrow">Project · Full-Stack / Agents + MCP · Built in Python <span class="tag">LIVE</span></div>
         <div class="proj-title">Intelligent Forecast</div>
-        <div class="proj-lead">An executive-facing forecast dashboard for a B2B SaaS pipeline. It reads a pipeline export, applies <b>deterministic rules grounded in MEDDPICC and deal hygiene</b>, and does the two things a forecast call needs: <b>flags which committed deals are at risk and why</b>, and <b>projects the number</b> for a chosen timeframe (booked + open pipeline → a risk-adjusted forecast). The rules own every flag; the model only explains and routes — so every number is auditable.</div>
+        <div class="proj-lead">An executive-facing forecast dashboard for a B2B SaaS pipeline. It reads a bottom-of-funnel pipeline review export, applies <b>deterministic rules grounded in MEDDPICC and deal hygiene</b>, and does the two things a forecast call needs: <b>flags which committed deals are at risk and why</b>, and <b>projects the number</b> for a chosen timeframe (booked + open pipeline → a risk-adjusted forecast). The rules own every flag; the model only explains and routes so every number is auditable.</div>
 
         <div class="proj-grid">
           <div>
             <h4>The hard problem</h4>
-            <p>Three executives look at the same forecast and ask different questions — the CFO wants a number defensible to the board, the CRO wants where to point the team, the RevOps VP wants who owns the fix. A black-box model answers none of them credibly. The hard part is making a forecast that's simultaneously prioritized, projectable, and auditable down to the individual rule that fired.</p>
+            <p>Three executives look at the same forecast and ask different questions: the CFO wants a number defensible to the board, the CRO wants where to point the team, the RevOps VP wants who owns the fix. A black-box model answers none of them credibly. The hard part is making a forecast that's simultaneously prioritized, projectable, and auditable down to the individual rule that fired.</p>
           </div>
           <div>
             <h4>Approach</h4>
-            <p>A fully-tested deterministic rule engine (each rule maps 1:1 to a MEDDPICC or hygiene signal) scores a 600-deal pipeline; a FastAPI service + React SPA deploy as one container; an MCP tool server exposes the detector so agents can query it conversationally. The LLM only narrates and routes questions to one of four agents — it never sets a flag.</p>
+            <p>A fully-tested deterministic rule engine (each rule maps 1:1 to a MEDDPICC or hygiene signal) scores a 600-deal pipeline; a FastAPI service + React SPA deploy as one container; an MCP tool server exposes the detector so agents can query it conversationally. The LLM only narrates and routes questions to one of four agents - it never sets a flag.</p>
           </div>
         </div>
 
         <div class="proj-sub">Key result</div>
-        <div class="proj-stack" style="color:#C4CDD8;">The detector scores itself against labeled ground truth — and region-aware scoring lifts it from <b style="color:var(--paper);">F1 0.847 → 0.960</b> (precision 0.74 → 0.92, recall 1.00). Judging each deal against its own region's norm — not one global average — recovers the +11.3 F1 points: it stops over-flagging EMEA's normally-long proposals and catches NA's fast-region stalls the global norm misses.</div>
+        <div class="proj-stack" style="color:#C4CDD8;">The detector scores itself against labeled ground truth. Region-aware scoring lifts it from <b style="color:var(--paper);">F1 0.847 → 0.960</b> (precision 0.74 → 0.92, recall 1.00). Judging each deal against its own region's norm, not one global average, and recovers the +11.3 F1 points: it stops over-flagging EMEA's normally-long proposals and catches NA's fast-region stalls the global norm misses.</div>
 
         <div class="proj-sub">Stack</div>
         <div class="proj-stack">Python · React + Vite · FastAPI · pandas · Model Context Protocol (MCP) · Anthropic SDK · Docker · pytest / ruff / black · deterministic rule engine + multi-agent layer</div>
 
         <div class="proj-sub">Engineering rigor</div>
         <ul class="proj-rigor">
-          <li>Deterministic core makes zero network calls and runs end-to-end with no API key — the LLM paths degrade gracefully when unset</li>
+          <li>Deterministic core makes zero network calls and runs end-to-end with no API key. The LLM paths degrade gracefully when unset</li>
           <li>Real evaluation harness: precision / recall / F1 + confusion vs. labeled ground truth, reported per-rule, regenerable with one command</li>
           <li>Every flag traces to one auditable rule built only from the deal's own values; a manager can verify it against the CRM</li>
           <li>Period-over-period bookings math (YoY / QoQ / MoM / YTD) and a risk-adjusted projection by timeframe (stage win-rates, haircut on flagged deals, uplift on fast movers)</li>
-          <li>MCP server exposes the detector as read-only tools — structured JSON back, zero LLM calls in any tool</li>
+          <li>MCP server exposes the detector as read-only tools - structured JSON back, zero LLM calls in any tool</li>
           <li>All thresholds live in config so a RevOps admin can retune without touching rule logic; all data synthetic</li>
         </ul>
 
@@ -330,12 +330,12 @@
       <div class="project">
         <div class="proj-eyebrow">Project · RAG / Applied LLMs · Built in Python <span class="tag">LIVE</span></div>
         <div class="proj-title">Deal Desk Helper</div>
-        <div class="proj-lead">A citation-grounded contract-analysis tool that answers two questions a Deal Desk actually asks — <b>"what does this contract say about X?"</b> and <b>"which contracts across our book have clause X?"</b> — bridging the gap between how a business user phrases a question and how contracts are actually written.</div>
+        <div class="proj-lead">A citation-grounded contract-analysis tool that answers two questions a Deal Desk actually asks: <b>"what does this contract say about X?"</b> and <b>"which contracts across our book have clause X?"</b> It bridges the gap between how a business user phrases a question and how contracts are actually written.</div>
 
         <div class="proj-grid">
           <div>
             <h4>The hard problem</h4>
-            <p>Contracts rarely use the query's words. "Termination for convenience" appears as "terminate without cause," "in sole discretion," "without penalty." Keyword search misses them; even a cross-encoder reranker scores them near zero. An LLM judge recognizes the legal equivalence — recovering matches pure retrieval scored at zero.</p>
+            <p>Contracts rarely use the query's words. "Termination for convenience" appears as "terminate without cause," "in sole discretion," "without penalty." Keyword search misses them; even a cross-encoder reranker scores them near zero. An LLM judge recognizes the legal equivalence and recovers matches pure retrieval scored at zero.</p>
           </div>
           <div>
             <h4>Approach</h4>
@@ -371,7 +371,7 @@
         <div class="proj-grid">
           <div>
             <h4>The hard problem</h4>
-            <p>The most useful GTM automations touch the most sensitive data — named accounts, deal values, comp, churn signals — which often can't be sent to a third-party API. Running locally solves confidentiality, cost, and latency at once, but only if the local model is good enough. And small models are not interchangeable: the differences stay hidden until you measure them against your real tasks.</p>
+            <p>The most useful GTM automations touch the most sensitive data: named accounts, deal values, comp, and churn signals which often can't be sent to a third-party API. Running locally solves confidentiality, cost, and latency at once, but only if the local model is good enough. And small models are not interchangeable: the differences stay hidden until you measure them against your real tasks.</p>
           </div>
           <div>
             <h4>Approach</h4>
@@ -380,23 +380,23 @@
         </div>
 
         <div class="proj-sub">Key finding</div>
-        <div class="proj-stack" style="color:#C4CDD8;">The 7B model tied the 3B on overall quality (87.5% vs 87.6%) while running <b style="color:var(--paper);">2.3× slower</b> — capacity ≠ quality. And the ranking inverts by task: the best reasoner (Phi, 83%) is the worst at strict formatting (57%). The deliverable isn't a winner — it's a workload-to-model decision framework.</div>
+        <div class="proj-stack" style="color:#C4CDD8;">The 7B model tied the 3B on overall quality (87.5% vs 87.6%) while running <b style="color:var(--paper);">2.3× slower</b> - capacity ≠ quality. And the ranking inverts by task: the best reasoner (Phi, 83%) is the worst at strict formatting (57%). The deliverable isn't a winner. It's a workload-to-model decision framework.</div>
 
         <div class="proj-sub">Stack</div>
         <div class="proj-stack">Python · Ollama · Pydantic (constrained generation + validation + retry) · custom benchmark + scoring + aggregation harness · rubric-normalized quality scoring · GPU-instrumented (RTX 4080, CUDA 12.4)</div>
 
         <div class="proj-sub">Engineering rigor</div>
         <ul class="proj-rigor">
-          <li>Timing taken from the model's native counters, not wall-clock — generation speed isolated from load cost</li>
+          <li>Timing taken from the model's native counters - generation speed isolated from load cost</li>
           <li>Median-of-runs methodology; determinism verified (temp 0 gave byte-identical output across 10 runs)</li>
           <li>Two-guard reliability pattern: schema-constrained generation + Pydantic validation + single retry, failing gracefully</li>
-          <li>Honest limitations stated up front — GPU not CPU, so speed ratios generalize but absolutes don't</li>
+          <li>Honest limitations stated up front. GPU not CPU, so speed ratios generalize but absolutes don't</li>
           <li>Safety scored as calibration (over- vs under-refusal), surfacing small-model over-refusal on benign prompts</li>
         </ul>
 
         <div class="proj-links">
           <a class="primary" href="local-slm.html">▸ Read the case study</a>
-          <a class="ghost" href="local-slm-assessment.pdf" download>↓ Download assessment (PDF)</a>
+          <a class="ghost" href="local-slm-assessment.pdf" download>Download assessment (PDF)</a>
         </div>
       </div>
     </div>
