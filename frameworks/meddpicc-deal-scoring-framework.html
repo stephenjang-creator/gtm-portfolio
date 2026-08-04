@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page{ size:letter; margin:11mm 13mm; }
+  :root{
+    --ink:#14171f; --mute:#5b6470; --faint:#7a828d; --line:#e2e5ea;
+    --green:#15803d; --green-bg:#eef9f1; --green-line:#bfe6cc;
+    --amber:#b45309; --red:#b91c1c; --panel:#f7f8fa;
+    --serif:'DejaVu Serif',Georgia,'Times New Roman',serif;
+    --sans:'DejaVu Sans',system-ui,Helvetica,Arial,sans-serif;
+    --mono:'DejaVu Sans Mono',ui-monospace,'Courier New',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:var(--ink);font-family:var(--sans);font-size:9.2px;line-height:1.45;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .eyebrow{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);font-weight:700;margin-bottom:5px;}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:9px;}
+  h1{font-family:var(--serif);font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.05;}
+  .sub{color:var(--mute);font-size:9.8px;line-height:1.4;max-width:66ch;margin-top:5px;}
+  .sub b{color:var(--ink);font-weight:700;}
+  .stamp{font-family:var(--mono);font-size:7.6px;line-height:1.65;color:var(--faint);text-align:right;white-space:nowrap;}
+  .stamp b{color:var(--green);}
+
+  .lead{font-size:9.8px;color:var(--ink);margin-bottom:9px;line-height:1.45;}
+  .lead b{color:var(--green);font-weight:700;}
+
+  .sec{font-family:var(--mono);font-size:8.2px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--green);font-weight:700;margin:0 0 5px;display:flex;align-items:center;gap:9px;}
+  .sec::after{content:"";flex:1;height:1px;background:var(--line);}
+  .block{margin-bottom:9px;}
+
+  table{width:100%;border-collapse:collapse;}
+  th{font-family:var(--mono);font-size:7.4px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--mute);font-weight:700;text-align:left;padding:4px 8px;border-bottom:1.4px solid var(--ink);vertical-align:bottom;}
+  td{padding:3.8px 8px;border-bottom:1px solid var(--line);vertical-align:top;font-size:9.1px;line-height:1.36;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  td .el{font-family:var(--serif);font-weight:700;font-size:9.8px;color:var(--ink);}
+  td .code{font-family:var(--mono);font-size:7.8px;color:var(--faint);display:block;margin-top:0;letter-spacing:.03em;}
+  .risk td{color:#4a525d;}
+  .w{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:20px;white-space:nowrap;display:inline-block;}
+  .w.h{color:var(--red);background:#fdecec;} .w.m{color:var(--amber);background:#fdf3e6;} .w.l{color:var(--green);background:var(--green-bg);}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+  .logic{list-style:none;}
+  .logic li{position:relative;padding-left:16px;margin-bottom:3px;font-size:9.2px;line-height:1.4;color:#3c434e;}
+  .logic li::before{content:"\25B8";color:var(--green);position:absolute;left:0;font-size:8px;top:1px;}
+  .logic li b{color:var(--ink);font-weight:700;}
+
+  .tier{display:flex;gap:7px;margin-top:2px;}
+  .tierbox{flex:1;border:1px solid var(--line);border-radius:6px;padding:6px 9px;}
+  .tierbox .t{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .tierbox .d{color:var(--mute);font-size:8.4px;margin-top:2px;line-height:1.32;}
+  .tierbox.r{border-color:#f3c9c9;background:#fdf4f4;} .tierbox.r .t{color:var(--red);}
+  .tierbox.a{border-color:#f2ddb8;background:#fdf9f1;} .tierbox.a .t{color:var(--amber);}
+  .tierbox.g{border-color:var(--green-line);background:var(--green-bg);} .tierbox.g .t{color:var(--green);}
+
+  .rule{background:var(--green-bg);border:1px solid var(--green-line);border-left:3px solid var(--green);
+    border-radius:7px;padding:8px 12px;font-size:9.5px;line-height:1.45;color:#20422e;margin-bottom:8px;}
+  .rule b{color:var(--green);font-weight:700;}
+  .rule .k{font-family:var(--mono);font-size:7.6px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--green);font-weight:700;display:block;margin-bottom:3px;}
+
+  footer{border-top:1px solid var(--line);padding-top:7px;
+    display:flex;justify-content:space-between;gap:12px;
+    font-family:var(--mono);font-size:7.4px;color:var(--faint);letter-spacing:.03em;}
+  footer b{color:var(--mute);}
+</style>
+</head>
+<body>
+
+  <div class="eyebrow">Revenue Operations · Operational Framework</div>
+  <div class="head">
+    <div>
+      <h1>MEDDPICC Deal-Scoring Framework</h1>
+      <div class="sub">How committed deals get scored, flagged, and made <b>defensible line by line</b>: the rubric behind the Intelligent Forecast workflow. Every signal is deterministic and built only from the deal's own CRM fields.</div>
+    </div>
+    <div class="stamp">
+      <b>ANONYMIZED SAMPLE</b><br>
+      Stephen Jang · RevOps<br>
+      Thresholds illustrative<br>
+      Tune to your motion
+    </div>
+  </div>
+
+  <div class="lead">Two scoring layers run against every committed deal: <b>qualification depth</b> (MEDDPICC) and <b>deal hygiene</b> (behavioral signals in the record). Each fires a binary flag with a fixed owner. The model explains and drafts the next step; a human confirms anything that moves the number.</div>
+
+  <div class="block">
+    <div class="sec">Layer 1 · MEDDPICC qualification signals</div>
+    <table>
+      <thead><tr><th style="width:15%">Element</th><th style="width:37%">What "healthy" looks like</th><th style="width:37%">Risk flag fires when</th><th style="width:11%">Weight</th></tr></thead>
+      <tbody class="risk">
+        <tr><td><span class="el">Metrics</span><span class="code">M</span></td><td>Quantified business case tied to the buyer's KPIs; ROI validated with them</td><td>No quantified value, or the number was never confirmed by the buyer</td><td><span class="w h">High</span></td></tr>
+        <tr><td><span class="el">Economic buyer</span><span class="code">E</span></td><td>EB identified, engaged, and has met the team</td><td>EB unknown or unengaged past mid-stage</td><td><span class="w h">High</span></td></tr>
+        <tr><td><span class="el">Decision criteria</span><span class="code">D</span></td><td>Documented, and we shaped them</td><td>Criteria vague, or authored around a competitor's strengths</td><td><span class="w m">Med</span></td></tr>
+        <tr><td><span class="el">Decision process</span><span class="code">D</span></td><td>Steps, dates, and stakeholders mapped</td><td>No clear process; "they'll get back to us"</td><td><span class="w h">High</span></td></tr>
+        <tr><td><span class="el">Paper process</span><span class="code">P</span></td><td>Legal / procurement / security path known and started</td><td>Paper process still unknown at late stage</td><td><span class="w m">Med*</span></td></tr>
+        <tr><td><span class="el">Identify pain</span><span class="code">I</span></td><td>Compelling event with a deadline and a cost of inaction</td><td>"Nice to have"; no compelling event or date</td><td><span class="w h">High</span></td></tr>
+        <tr><td><span class="el">Champion</span><span class="code">C</span></td><td>Tested champion who sells internally when you're not in the room</td><td>No champion, or single-threaded to a passive coach</td><td><span class="w h">High</span></td></tr>
+        <tr><td><span class="el">Competition</span><span class="code">C</span></td><td>Position known; differentiation has landed</td><td>Active displacement risk left unaddressed</td><td><span class="w m">Med</span></td></tr>
+      </tbody>
+    </table>
+    <div style="font-family:var(--mono);font-size:7.2px;color:var(--faint);margin-top:3px;">* Paper-process weight escalates to High inside the closing window.</div>
+  </div>
+
+  <div class="block">
+    <div class="sec">Layer 2 · Deal-hygiene signals (region-aware)</div>
+    <div class="twocol">
+      <table>
+        <tbody class="risk">
+          <tr><td style="width:42%"><span class="el" style="font-size:9.1px;">Stage age vs region norm</span></td><td>In-stage longer than its <b style="color:var(--ink)">own region's</b> normal duration, not a global average</td></tr>
+          <tr><td><span class="el" style="font-size:9.1px;">Next step defined</span></td><td>No future-dated next step on the record</td></tr>
+          <tr><td><span class="el" style="font-size:9.1px;">Close-date integrity</span></td><td>Close date pushed twice or more, or already in the past</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody class="risk">
+          <tr><td style="width:42%"><span class="el" style="font-size:9.1px;">Activity recency</span></td><td>No meaningful buyer activity in the last N days</td></tr>
+          <tr><td><span class="el" style="font-size:9.1px;">Single-threading</span></td><td>One contact only; no multi-threaded engagement</td></tr>
+          <tr><td><span class="el" style="font-size:9.1px;">Amount vs stage</span></td><td>Large amount still early-stage near period end</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="sec">Roll-up · from signals to a risk tier</div>
+    <div class="tier">
+      <div class="tierbox r"><div class="t">● Red · at risk</div><div class="d">A committed deal carrying multiple high-weight flags. Surfaced to the forecast call with the reasons attached.</div></div>
+      <div class="tierbox a"><div class="t">● Amber · watch</div><div class="d">Isolated or medium-weight flags. Rep owns the fix; tracked but not haircut.</div></div>
+      <div class="tierbox g"><div class="t">● Green · clean</div><div class="d">No flags fired against the region-normalized thresholds. Counts at full confidence.</div></div>
+    </div>
+    <ul class="logic" style="margin-top:7px;">
+      <li><b>Region-aware normalization.</b> Durations and thresholds compare each deal to its region's norm, so EMEA's longer proposals aren't over-flagged and NA's fast-region stalls aren't missed.</li>
+      <li><b>Deterministic and binary.</b> Every flag either fires or it doesn't, from the deal's own values: no probabilistic black box on a number the CFO has to defend.</li>
+    </ul>
+  </div>
+
+  <div class="rule">
+    <span class="k">The rule that keeps it auditable</span>
+    Every flag maps <b>1:1</b> to a signal on this page, and every threshold lives in config. The model only explains why a flag fired and drafts the next step; <b>it never sets or clears a flag</b>. A manager can verify any flag against the CRM in seconds, which is exactly what makes the forecast defensible to the board. Money, comp, and customer decisions stay human-approved by policy.
+  </div>
+
+  <footer>
+    <span><b>Anonymized sample framework.</b> All thresholds illustrative.</span>
+    <span>Stephen Jang · Revenue Operations · stephenjang-creator.github.io/gtm-portfolio</span>
+  </footer>
+
+</body>
+</html>

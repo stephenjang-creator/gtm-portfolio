@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Local SLM Evaluation for RevOps — Stephen Jang</title>
+<title>Local SLM Evaluation for RevOps · Stephen Jang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
@@ -133,7 +133,7 @@
   <div class="wrap">
     <div class="eyebrow">Applied AI · Evaluation</div>
     <h1>When you can't send sensitive CRM data to a third party model, which local model do you trust?</h1>
-    <p class="lede">A reproducible evaluation of three small language models running entirely on local hardware — built to answer a question every RevOps leader now faces: which on-prem model is actually good enough to run against confidential pipeline data?</p>
+    <p class="lede">A reproducible evaluation of three small language models running entirely on local hardware, built to answer a question every RevOps leader now faces: which on-prem model is actually good enough to run against confidential pipeline data?</p>
     <div class="meta">
       <div><b>Role</b>Design · build · analysis</div>
       <div><b>Stack</b>Python · Ollama · Pydantic</div>
@@ -151,17 +151,17 @@
   <div class="wrap">
     <div class="kicker">The problem</div>
     <h2>Cloud LLMs are off the table for the data RevOps cares about most</h2>
-    <p class="lead-p">The most useful GTM automations touch the most sensitive data: named accounts, deal values, forecast commentary, comp, churn signals. Sending that to a third-party API is often a non-starter — and increasingly, the decision isn't ours to make.</p>
+    <p class="lead-p">The most useful GTM automations touch the most sensitive data: named accounts, deal values, forecast commentary, comp, churn signals. Sending that to a third-party API is often a non-starter, and increasingly, the decision isn't ours to make.</p>
     <div class="why">
       <h3>Why a RevOps leader should evaluate local models</h3>
       <ul>
-        <li><span class="n">01</span><span><b>Confidentiality &amp; contractual limits.</b> Customer data in the CRM frequently carries contractual or regulatory restrictions on sub-processing. A local model keeps pipeline data on hardware you control — nothing leaves the building.</span></li>
+        <li><span class="n">01</span><span><b>Confidentiality &amp; contractual limits.</b> Customer data in the CRM frequently carries contractual or regulatory restrictions on sub-processing. A local model keeps pipeline data on hardware you control: nothing leaves the building.</span></li>
         <li><span class="n">02</span><span><b>Cost at scale.</b> Per-token API pricing compounds fast when you're scoring every deal, summarizing every call, and drafting every renewal note. Local inference has a fixed hardware cost and a marginal cost near zero.</span></li>
         <li><span class="n">03</span><span><b>Latency &amp; availability.</b> Workflows embedded in the rep's flow can't wait on a network round-trip or survive an API outage. Local inference is predictable and always on.</span></li>
         <li><span class="n">04</span><span><b>Vendor independence.</b> Model deprecations, price changes, and rate limits are outside your control with a hosted API. A local model you've validated stays put.</span></li>
       </ul>
     </div>
-    <p style="margin-top:22px">But "run it locally" only helps if the local model is actually good enough. Small models are not interchangeable — and the differences don't show up until you measure them against your real tasks. This project builds that measurement.</p>
+    <p style="margin-top:22px">But "run it locally" only helps if the local model is actually good enough. Small models are not interchangeable, and the differences don't show up until you measure them against your real tasks. This project builds that measurement.</p>
   </div>
 </section>
 
@@ -171,7 +171,7 @@
     <h2>A reproducible test rig, honestly scoped</h2>
     <p>Everything ran through <b>Ollama</b> on a single machine, orchestrated by a small Python harness that captures the model's own timing counters rather than wall-clock guesses. Three models, one prompt suite, three runs each, temperature 0 for repeatability.</p>
     <dl class="spec">
-      <dt>Hardware</dt><dd>MSI Raider 18 HX — NVIDIA RTX 4080 Laptop GPU, 12 GB VRAM</dd>
+      <dt>Hardware</dt><dd>MSI Raider 18 HX · NVIDIA RTX 4080 Laptop GPU, 12 GB VRAM</dd>
       <dt>Runtime</dt><dd>Ollama, GPU-accelerated (CUDA 12.4)</dd>
       <dt>Models</dt><dd>Llama 3.2 3B · Phi 3.5 (3.8B) · Mistral 7B</dd>
       <dt>Test suite</dt><dd>40 prompts across 5 task categories, 3 runs each = 360 generations</dd>
@@ -185,7 +185,7 @@
   <div class="wrap">
     <div class="kicker">What we tested</div>
     <h2>Five task categories that mirror real RevOps work</h2>
-    <p>The prompt suite wasn't generic trivia — each category maps to something a GTM assistant would actually be asked to do against CRM data:</p>
+    <p>The prompt suite wasn't generic trivia: each category maps to something a GTM assistant would actually be asked to do against CRM data:</p>
     <table class="tbl">
       <thead><tr><th>Category</th><th>What it measures</th><th>RevOps analog</th></tr></thead>
       <tbody>
@@ -202,10 +202,10 @@
 <section>
   <div class="wrap">
     <div class="kicker">Headline finding</div>
-    <h2>The bigger model bought nothing — at 2.3× the latency</h2>
+    <h2>The bigger model bought nothing, at 2.3× the latency</h2>
     <div class="stats">
-      <div class="stat a"><div class="big">87.6%</div><div class="lbl">Llama 3.2 3B overall quality — at <b>156 tok/s</b></div></div>
-      <div class="stat b"><div class="big">87.5%</div><div class="lbl">Mistral 7B overall quality — at just <b>69 tok/s</b></div></div>
+      <div class="stat a"><div class="big">87.6%</div><div class="lbl">Llama 3.2 3B overall quality, at <b>156 tok/s</b></div></div>
+      <div class="stat b"><div class="big">87.5%</div><div class="lbl">Mistral 7B overall quality, at just <b>69 tok/s</b></div></div>
       <div class="stat c"><div class="big">2.3×</div><div class="lbl">Speed penalty for the 7B, for a <b>statistical tie</b> on quality</div></div>
     </div>
     <figure>
@@ -243,20 +243,20 @@
 <text x="568" y="280" text-anchor="end" font-size="11" fill="#6b7280" font-family="'JetBrains Mono', ui-monospace, monospace">149 t/s · 80.6%</text>
 <text x="323" y="166" font-size="13" font-weight="700" fill="#e8590c">Mistral 7B</text>
 <text x="323" y="180" font-size="11" fill="#6b7280" font-family="'JetBrains Mono', ui-monospace, monospace">69 t/s · 87.5%</text>
-<text x="323" y="200" font-size="11.5" fill="#12141c" font-style="italic">same quality as Llama —</text>
+<text x="323" y="200" font-size="11.5" fill="#12141c" font-style="italic">same quality as Llama,</text>
 <text x="323" y="216" font-size="11.5" fill="#12141c" font-style="italic">at 2.3× the latency</text>
 </svg>
-      <figcaption><b>Speed vs. quality.</b> The 3B Llama model lands in the fast-and-good corner. Mistral 7B matches its quality almost exactly while running at less than half the throughput — on this task mix, model size did not translate into better output, only higher latency.</figcaption>
+      <figcaption><b>Speed vs. quality.</b> The 3B Llama model lands in the fast-and-good corner. Mistral 7B matches its quality almost exactly while running at less than half the throughput: on this task mix, model size did not translate into better output, only higher latency.</figcaption>
     </figure>
-    <p>For a general-purpose local assistant, this is the whole decision: <strong>paying 2.3× in speed for a tie is the wrong trade.</strong> The intuitive move — reach for the biggest model that fits — is measurably wrong here.</p>
+    <p>For a general-purpose local assistant, this is the whole decision: <strong>paying 2.3× in speed for a tie is the wrong trade.</strong> The intuitive move (reach for the biggest model that fits) is measurably wrong here.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <div class="kicker">The real story</div>
-    <h2>There is no single "best" small model — only a best fit per task</h2>
-    <p>The aggregate tie hides the most useful result. Broken down by category, the ranking <strong>inverts twice</strong> — and in opposite directions:</p>
+    <h2>There is no single "best" small model, only a best fit per task</h2>
+    <p>The aggregate tie hides the most useful result. Broken down by category, the ranking <strong>inverts twice</strong>, and in opposite directions:</p>
     <figure>
       <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" font-family="'Space Grotesk', system-ui, sans-serif">
 <rect width="720" height="460" fill="white"/>
@@ -317,11 +317,11 @@
       <figcaption><b>Quality by category.</b> Phi 3.5 is the <b>best reasoner</b> (83%) and the <b>worst at following strict output formats</b> (57%). Llama and Mistral are perfect on format compliance but Llama collapses on reasoning (50%). The model you pick depends entirely on which of these your workload leans on.</figcaption>
     </figure>
     <h3>Reasoning inverts the ranking</h3>
-    <p>On arithmetic and logic, the order is <b>Phi (83%) &gt; Mistral (70%) &gt; Llama (50%)</b> — the reverse of raw model size. Llama fails half the reasoning prompts outright (the classic small-model traps). If the job is forecast math or multi-step analysis, the general-purpose default is the <em>worst</em> choice.</p>
+    <p>On arithmetic and logic, the order is <b>Phi (83%) &gt; Mistral (70%) &gt; Llama (50%)</b>, the reverse of raw model size. Llama fails half the reasoning prompts outright (the classic small-model traps). If the job is forecast math or multi-step analysis, the general-purpose default is the <em>worst</em> choice.</p>
     <h3>Instruction-following inverts it back</h3>
-    <p>On strict-format prompts, it flips: <b>Llama and Mistral hit 100%, Phi drops to 57%.</b> The best reasoner is the least able to stay inside a rigid output contract — so for anything that feeds a downstream workflow (JSON into the CRM, an exact template), Phi's reasoning edge is irrelevant because you can't trust its structure.</p>
+    <p>On strict-format prompts, it flips: <b>Llama and Mistral hit 100%, Phi drops to 57%.</b> The best reasoner is the least able to stay inside a rigid output contract, so for anything that feeds a downstream workflow (JSON into the CRM, an exact template), Phi's reasoning edge is irrelevant because you can't trust its structure.</p>
     <h3>Safety is a calibration problem, not a switch</h3>
-    <p>Llama scored 100% on safety; Mistral and Phi 80%. That gap is <b>over-refusal</b> — the smaller-tuned models declining benign internal questions ("how do I spot a phishing email?"), not failing to block the genuinely harmful one. For an internal RevOps tool, a model that refuses legitimate questions is its own kind of failure.</p>
+    <p>Llama scored 100% on safety; Mistral and Phi 80%. That gap is <b>over-refusal</b>: the smaller-tuned models declining benign internal questions ("how do I spot a phishing email?"), not failing to block the genuinely harmful one. For an internal RevOps tool, a model that refuses legitimate questions is its own kind of failure.</p>
   </div>
 </section>
 
@@ -329,17 +329,17 @@
   <div class="wrap">
     <div class="kicker">The recommendation</div>
     <h2>Match the model to the workload</h2>
-    <p>The deliverable isn't a winner — it's a decision framework a team can actually use:</p>
+    <p>The deliverable isn't a winner: it's a decision framework a team can actually use:</p>
     <table class="tbl">
       <thead><tr><th>If the workload is primarily…</th><th>Deploy</th><th>Why</th></tr></thead>
       <tbody>
         <tr><td><b>General-purpose assistant</b></td><td><span class="pill l">Llama 3.2 3B</span></td><td>Ties the field on quality at 2.3× the speed; only weak spot is reasoning</td></tr>
         <tr><td><b>Structured extraction / pipeline output</b></td><td><span class="pill l">Llama 3.2 3B</span></td><td>97% extraction, 100% format compliance, fast</td></tr>
-        <tr><td><b>Reasoning / forecast logic</b></td><td><span class="pill p">Phi 3.5</span></td><td>83% reasoning vs Llama's 50% — but only if output format is flexible</td></tr>
-        <tr><td><b>Reasoning <em>and</em> strict format</b></td><td><span class="pill m">Mistral 7B</span></td><td>The only model decent at both — its 7B capacity earns its keep here, at 2.3× the latency cost</td></tr>
+        <tr><td><b>Reasoning / forecast logic</b></td><td><span class="pill p">Phi 3.5</span></td><td>83% reasoning vs Llama's 50%, but only if output format is flexible</td></tr>
+        <tr><td><b>Reasoning <em>and</em> strict format</b></td><td><span class="pill m">Mistral 7B</span></td><td>The only model decent at both: its 7B capacity earns its keep here, at 2.3× the latency cost</td></tr>
       </tbody>
     </table>
-    <p style="margin-top:20px">The 7B model isn't useless — it's the only one that avoids <em>both</em> failure modes at once. But that robustness costs 2.3× in throughput, and it's only worth paying when a workload genuinely needs both strengths. <strong>For most single-purpose local deployments, a 3B model matched to the task is the better engineering decision.</strong></p>
+    <p style="margin-top:20px">The 7B model isn't useless: it's the only one that avoids <em>both</em> failure modes at once. But that robustness costs 2.3× in throughput, and it's only worth paying when a workload genuinely needs both strengths. <strong>For most single-purpose local deployments, a 3B model matched to the task is the better engineering decision.</strong></p>
   </div>
 </section>
 
@@ -347,7 +347,7 @@
   <div class="wrap">
     <div class="kicker">What this demonstrates</div>
     <h2>Evaluation discipline, not just a benchmark</h2>
-    <p>Model selection is a recurring, consequential decision for any team deploying AI — and it's rarely as simple as "pick the biggest one." This project shows, with reproducible numbers on fixed hardware, that capacity is not quality, that aggregate scores hide workload-specific strengths, that "safety" is a calibration question, and that <strong>naming your own measurement's limitations is what makes an evaluation decision-grade rather than marketing.</strong></p>
+    <p>Model selection is a recurring, consequential decision for any team deploying AI, and it's rarely as simple as "pick the biggest one." This project shows, with reproducible numbers on fixed hardware, that capacity is not quality, that aggregate scores hide workload-specific strengths, that "safety" is a calibration question, and that <strong>naming your own measurement's limitations is what makes an evaluation decision-grade rather than marketing.</strong></p>
     <p>The full assessment includes the environment setup, the measurement methodology (including cold-start and determinism sub-studies), the complete category-level data, and the honest-limitations section in full.</p>
     <a class="dl" href="./local-slm-assessment.pdf" download>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v9m0 0L5 7m3 3l3-3M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

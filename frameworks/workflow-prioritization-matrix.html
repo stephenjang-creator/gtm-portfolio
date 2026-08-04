@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page{ size:letter; margin:12mm 13mm; }
+  :root{
+    --ink:#14171f; --mute:#5b6470; --faint:#7a828d; --line:#e2e5ea;
+    --green:#15803d; --green-bg:#eef9f1; --green-line:#bfe6cc;
+    --amber:#b45309; --red:#b91c1c; --blue:#1d4ed8; --panel:#f7f8fa;
+    --serif:'DejaVu Serif',Georgia,'Times New Roman',serif;
+    --sans:'DejaVu Sans',system-ui,Helvetica,Arial,sans-serif;
+    --mono:'DejaVu Sans Mono',ui-monospace,'Courier New',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#fff;color:var(--ink);font-family:var(--sans);font-size:9.4px;line-height:1.5;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .eyebrow{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);font-weight:700;margin-bottom:6px;}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    border-bottom:2px solid var(--ink);padding-bottom:11px;margin-bottom:13px;}
+  h1{font-family:var(--serif);font-weight:700;font-size:25px;letter-spacing:-.01em;line-height:1.05;}
+  .sub{color:var(--mute);font-size:10px;line-height:1.45;max-width:70ch;margin-top:6px;}
+  .sub b{color:var(--ink);font-weight:700;}
+  .stamp{font-family:var(--mono);font-size:7.6px;line-height:1.7;color:var(--faint);text-align:right;white-space:nowrap;}
+  .stamp b{color:var(--green);}
+
+  .lead{font-size:10px;color:var(--ink);margin-bottom:12px;line-height:1.5;}
+  .lead b{color:var(--green);font-weight:700;}
+
+  .sec{font-family:var(--mono);font-size:8.2px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--green);font-weight:700;margin:0 0 7px;display:flex;align-items:center;gap:9px;}
+  .sec::after{content:"";flex:1;height:1px;background:var(--line);}
+  .block{margin-bottom:13px;}
+
+  .axes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px;}
+  .axis{border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--panel);}
+  .axis .n{font-family:var(--mono);font-size:7.4px;color:var(--green);font-weight:700;letter-spacing:.05em;}
+  .axis .t{font-family:var(--serif);font-weight:700;font-size:11px;margin:2px 0 3px;}
+  .axis .d{color:var(--mute);font-size:8.4px;line-height:1.35;}
+  .formula{font-family:var(--mono);font-size:8.6px;color:#3c434e;background:var(--green-bg);
+    border:1px solid var(--green-line);border-radius:6px;padding:7px 11px;margin-top:2px;}
+  .formula b{color:var(--green);}
+
+  table{width:100%;border-collapse:collapse;}
+  th{font-family:var(--mono);font-size:7.2px;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--mute);font-weight:700;text-align:center;padding:5px 5px;border-bottom:1.4px solid var(--ink);vertical-align:bottom;}
+  th.l{text-align:left;}
+  td{padding:5px 5px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:9px;text-align:center;}
+  td.l{text-align:left;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  td .wf{font-family:var(--serif);font-weight:700;font-size:9.6px;color:var(--ink);}
+  td .code{font-family:var(--mono);font-size:7.4px;color:var(--faint);display:block;margin-top:0px;}
+  .score{font-family:var(--mono);font-weight:700;}
+  .pri{font-family:var(--mono);font-size:7.6px;font-weight:700;padding:2px 6px;border-radius:20px;letter-spacing:.02em;white-space:nowrap;}
+  .pri.hh{color:var(--red);background:#fdecec;} .pri.h{color:var(--amber);background:#fdf3e6;} .pri.m{color:var(--blue);background:#eaf0fd;}
+  .post{font-family:var(--mono);font-size:7.6px;font-weight:700;white-space:nowrap;}
+  .post.auto{color:var(--green);} .post.assist{color:var(--amber);} .post.human{color:var(--red);}
+  .wave{font-family:var(--mono);font-size:7.6px;color:var(--mute);white-space:nowrap;}
+
+  .legend{font-family:var(--mono);font-size:7.4px;color:var(--faint);margin-top:5px;display:flex;gap:16px;flex-wrap:wrap;}
+  .legend b{color:var(--mute);}
+
+  .waves{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .wv{border:1px solid var(--line);border-radius:7px;padding:9px 11px;}
+  .wv .h{font-family:var(--mono);font-size:7.8px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--green);margin-bottom:2px;}
+  .wv .ti{font-family:var(--serif);font-weight:700;font-size:11px;margin-bottom:4px;}
+  .wv .d{color:#3c434e;font-size:8.7px;line-height:1.42;}
+  .wv .d b{color:var(--ink);font-weight:700;}
+  .wv.two{border-top:2px solid var(--green);}
+
+  .rule{background:var(--green-bg);border:1px solid var(--green-line);border-left:3px solid var(--green);
+    border-radius:7px;padding:10px 13px;font-size:9.6px;line-height:1.5;color:#20422e;margin:13px 0 12px;}
+  .rule b{color:var(--green);font-weight:700;}
+  .rule .k{font-family:var(--mono);font-size:7.6px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--green);font-weight:700;display:block;margin-bottom:4px;}
+
+  footer{border-top:1px solid var(--line);padding-top:8px;
+    display:flex;justify-content:space-between;gap:12px;
+    font-family:var(--mono);font-size:7.4px;color:var(--faint);letter-spacing:.03em;}
+  footer b{color:var(--mute);}
+</style>
+</head>
+<body>
+
+  <div class="eyebrow">Revenue Operations · Operational Framework</div>
+  <div class="head">
+    <div>
+      <h1>GTM Workflow Prioritization Matrix</h1>
+      <div class="sub">How <b>dozens of manual RevOps &amp; PMO processes</b> get mapped, scored, and sequenced into a 90-day automation roadmap, so the highest-leverage work ships first and nothing that touches money or comp gets automated by accident.</div>
+    </div>
+    <div class="stamp">
+      <b>ANONYMIZED SAMPLE</b><br>
+      Stephen Jang · RevOps<br>
+      Scores illustrative<br>
+      Tune to your org
+    </div>
+  </div>
+
+  <div class="lead">Two independent reads on every candidate workflow. <b>Priority</b> decides the order it ships. <b>Exposure</b> decides how much the machine is allowed to do. It never changes the priority, only the posture.</div>
+
+  <div class="block">
+    <div class="sec">Step 1 · Score each workflow (1-5 per axis)</div>
+    <div class="axes">
+      <div class="axis"><div class="n">01 · IMPACT</div><div class="t">Impact</div><div class="d">Revenue, margin, or velocity moved if this runs well</div></div>
+      <div class="axis"><div class="n">02 · VOLUME</div><div class="t">Volume</div><div class="d">How often it runs: frequency × people it touches</div></div>
+      <div class="axis"><div class="n">03 · TIME</div><div class="t">Time drain</div><div class="d">Manual hours it consumes across the team today</div></div>
+      <div class="axis"><div class="n">04 · FEAS</div><div class="t">Feasibility</div><div class="d">Data availability + how cleanly the logic maps to rules</div></div>
+    </div>
+    <div class="formula"><b>Priority</b> = Impact × Volume × Time × Feasibility &nbsp;&nbsp;·&nbsp;&nbsp; <b>Exposure</b> (money / comp / customer stakes) sets the automation posture separately</div>
+  </div>
+
+  <div class="block">
+    <div class="sec">Step 2 · Rank &amp; assign a posture</div>
+    <table>
+      <thead><tr>
+        <th class="l" style="width:26%">Candidate workflow</th>
+        <th>Imp</th><th>Vol</th><th>Time</th><th>Feas</th>
+        <th>Priority</th><th>Exposure</th><th>Posture</th><th>Wave</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="l"><span class="wf">Renewal / churn-risk forecast</span></td><td class="score">5</td><td class="score">4</td><td class="score">4</td><td class="score">4</td><td><span class="pri hh">Top</span></td><td>Med</td><td><span class="post assist">Assist</span></td><td><span class="wave">Now</span></td></tr>
+        <tr><td class="l"><span class="wf">Competitive deal flagging</span></td><td class="score">4</td><td class="score">4</td><td class="score">3</td><td class="score">4</td><td><span class="pri hh">Top</span></td><td>Low</td><td><span class="post auto">Automate</span></td><td><span class="wave">Now</span></td></tr>
+        <tr><td class="l"><span class="wf">Bottom-of-funnel deal review</span></td><td class="score">4</td><td class="score">5</td><td class="score">5</td><td class="score">3</td><td><span class="pri hh">Top</span></td><td>Med</td><td><span class="post assist">Assist</span></td><td><span class="wave">Next</span></td></tr>
+        <tr><td class="l"><span class="wf">Coaching prep for 1:1s</span></td><td class="score">3</td><td class="score">5</td><td class="score">4</td><td class="score">4</td><td><span class="pri h">High</span></td><td>Low</td><td><span class="post auto">Automate</span></td><td><span class="wave">Next</span></td></tr>
+        <tr><td class="l"><span class="wf">Contract clause lookup (Deal Desk)</span></td><td class="score">4</td><td class="score">3</td><td class="score">4</td><td class="score">3</td><td><span class="pri h">High</span></td><td>Med</td><td><span class="post assist">Assist</span></td><td><span class="wave">Next</span></td></tr>
+        <tr><td class="l"><span class="wf">Quote / discount approval routing</span></td><td class="score">4</td><td class="score">4</td><td class="score">2</td><td class="score">3</td><td><span class="pri m">Med</span></td><td>High</td><td><span class="post human">Human-owned</span></td><td><span class="wave">Later</span></td></tr>
+        <tr><td class="l"><span class="wf">Comp / SPIFF calculation</span></td><td class="score">3</td><td class="score">2</td><td class="score">3</td><td class="score">3</td><td><span class="pri m">Med</span></td><td>High</td><td><span class="post human">Human-owned</span></td><td><span class="wave">Later</span></td></tr>
+        <tr><td class="l"><span class="wf">QBR account summaries</span></td><td class="score">3</td><td class="score">3</td><td class="score">4</td><td class="score">4</td><td><span class="pri h">High</span></td><td>Low</td><td><span class="post auto">Automate</span></td><td><span class="wave">Later</span></td></tr>
+      </tbody>
+    </table>
+    <div class="legend">
+      <span><b>Posture</b> · <span style="color:var(--green)">Automate</span>: system acts, human spot-checks &nbsp;·&nbsp; <span style="color:var(--amber)">Assist</span>: system drafts, human decides &nbsp;·&nbsp; <span style="color:var(--red)">Human-owned</span>: system informs only</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="sec">Step 3 · Sequence into 90 days</div>
+    <div class="waves">
+      <div class="wv"><div class="h">Days 0-30</div><div class="ti">Foundation &amp; quick wins</div><div class="d">Wire the governance layer to the systems of record. Ship <b>1-2 low-exposure, top-priority</b> automations (competitive flagging, renewal risk) to prove the pattern.</div></div>
+      <div class="wv two"><div class="h">Days 31-60</div><div class="ti">Highest-leverage</div><div class="d">Attack the biggest <b>time-drain × volume</b> workflows (bottom-of-funnel review, coaching prep). Stand up the human-gate review loop.</div></div>
+      <div class="wv"><div class="h">Days 61-90</div><div class="ti">Scale &amp; govern</div><div class="d">Templatize so new workflows ship as <b>configuration, not rebuilds</b>. Formalize the audit trail. Keep money / comp / customer workflows human-owned.</div></div>
+    </div>
+  </div>
+
+  <div class="rule">
+    <span class="k">The governance rule</span>
+    <b>Score sets the order. Exposure sets the posture.</b> Anything touching money, comp, or a customer stays human-owned regardless of how high it scores. That single policy is what keeps the whole system auditable, and it's why reps and managers trust it enough to adopt it.
+  </div>
+
+  <footer>
+    <span><b>Anonymized sample framework.</b> All scores illustrative.</span>
+    <span>Stephen Jang · Revenue Operations · stephenjang-creator.github.io/gtm-portfolio</span>
+  </footer>
+
+</body>
+</html>
