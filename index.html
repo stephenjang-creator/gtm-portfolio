@@ -364,68 +364,6 @@
     <div class="seclabel" style="margin-top:46px;">Selected work: the code behind the strategy</div>
     <div class="work">
       <div class="project">
-        <div class="proj-eyebrow">Quota &amp; territory planning · Full-stack + agents <span class="tag">LIVE</span></div>
-        <div class="proj-title">Territory &amp; Quota Designer</div>
-        <div class="proj-lead">A quota-first capacity planner for the CRO and Head of Sales Ops. It standardizes quota by role from pay, carves each rep's territory <b>backward</b> to support that number, and flags every seller whose book can't generate the pipeline to hit quota, <b>before the plan locks and comp letters go out</b>. It doesn't just diagnose: every gap comes with a <b>one-click fix</b> that recomputes the whole plan.</div>
-
-        <div class="proj-outcome">
-          <span class="oc-k">Business outcome</span>
-          <b>Catches under-covered reps before the year starts, not at the Q3 QBR.</b> On the demo plan (36 reps, a $7M/quarter target, $28M/year) it shows 25 of 36 covered and SMB short $688K of pipeline, then offers three fixes with the tradeoff named: re-tag 102 accounts into SMB, lower SMB's quota, or accept a lower coverage target, plus a safe hiring plan and a cost-of-sale check. Change any assumption and every number recomputes.
-        </div>
-
-        <div class="proj-grid">
-          <div>
-            <h4>The problem it solves</h4>
-            <p>Most orgs set quota by <b>title</b>, from the pay band, not by the size of the book in front of the rep. Nothing guarantees that territory holds enough pipeline to produce the number at the team's real win rates. When it doesn't, the rep is under-covered before day one: attainment slips, cost-of-sale climbs, and the forecast built on those quotas was optimistic from the start. You usually find out at the QBR.</p>
-          </div>
-          <div>
-            <h4>How it inverts the problem</h4>
-            <p>It flips the usual order. <b>Quota is the fixed input</b>, standardized by role and anchored on OTE; the territory is what you build to support it. The carve packs each book to a pipeline-coverage target, and a reverse waterfall proves it against real stage win-rates, so an under-covered rep shows up as an explicit dollar shortfall instead of a number buried in an uneven carve.</p>
-          </div>
-        </div>
-
-        <div class="proj-sub">Business &amp; process impact</div>
-        <ul class="proj-impact">
-          <li><b>Standardizes quota by role, so comp is defensible</b>: same title and segment carry the same number, derived from pay, with no per-rep politics</li>
-          <li><b>Prices the plan before it locks</b>: total comp, cost-of-sale, and how both move across attainment scenarios, so a quota plan can't quietly break the cost-of-sale model</li>
-          <li><b>Every recommendation resolves the gap, it doesn't just flag it</b>: the re-tag lever moves real accounts and re-carves until every rep clears, so a planner acts instead of interpreting</li>
-          <li><b>Spreads a structural shortfall fairly</b>: when a segment can't cover, it raises the worst-covered rep's floor instead of starving one rep to over-fill another</li>
-          <li><b>Surfaces the gap honestly</b>: when a segment simply lacks the pipeline, it says so and shows where the pipeline actually is, rather than hiding it in the carve</li>
-        </ul>
-
-        <div class="proj-sub">Tech stack &amp; architecture</div>
-        <div class="stack-badges">
-          <span class="badge key">Deterministic planning engine</span>
-          <span class="badge key">One-click applyable fixes</span>
-          <span class="badge">Python</span>
-          <span class="badge">FastAPI</span>
-          <span class="badge">pydantic</span>
-          <span class="badge">Model Context Protocol (MCP)</span>
-          <span class="badge">Vanilla-JS dashboard</span>
-          <span class="badge">pytest · ruff · black</span>
-          <span class="badge">Render</span>
-        </div>
-
-        <details class="uh">
-          <summary>Under the hood: engineering rigor &amp; the proof</summary>
-          <div class="uh-body">
-            <ul class="proj-rigor">
-              <li>Deterministic, tested core: every number the UI shows comes from pure Python in the core engine; 85 unit tests, ruff + black clean, and a fixed seed reproduces the plan exactly</li>
-              <li>Recommendations are computed and returned as an applyable settings delta, with round-trip tests proving each fix clears the issue it targets; the re-tag lever re-carves until every rep clears, not just the segment aggregate</li>
-              <li>Work-back carve vs a naive equal-split under the same quotas: identical total gap ($688K, structural), but the carve lifts the worst-covered rep's floor 2.22× to 2.33× and cuts off-home-region assignments 63.2%</li>
-              <li>Conversion rates resolve rep &gt; segment &gt; global, and the engine records which tier supplied each number, so any waterfall figure carries an audit trail</li>
-              <li>The same engine is an MCP server (15 read-only tools) an agent can drive to interrogate and fix a plan; the model explains and proposes, the deterministic core owns every number. All data synthetic</li>
-            </ul>
-          </div>
-        </details>
-
-        <div class="proj-links">
-          <a class="primary" href="https://territory-quota-designer.onrender.com/" target="_blank" rel="noopener">▸ Live demo</a>
-          <a class="ghost" href="https://github.com/stephenjang-creator/territory_quota_designer" target="_blank" rel="noopener">↗ Source</a>
-        </div>
-      </div>
-
-      <div class="project">
         <div class="proj-eyebrow">Forecast &amp; pipeline risk · Full-stack + agents <span class="tag">LIVE</span></div>
         <div class="proj-title">Intelligent Forecast</div>
         <div class="proj-lead">An executive-facing forecast the whole leadership team can trust. It reads a bottom-of-funnel pipeline review, applies <b>deterministic rules grounded in MEDDPICC and deal hygiene</b>, and does the two things a forecast call needs: it <b>flags which committed deals are actually at risk, and why</b>, and it <b>projects the number</b> for any timeframe. The deal-by-deal judgment a manager used to do by hand across a 600-deal pipeline, now in seconds, and defensible line by line.</div>
@@ -487,6 +425,68 @@
           <a class="primary" href="https://sales-forecast-z99s.onrender.com/" target="_blank" rel="noopener">▸ Live demo</a>
           <a class="ghost" href="meddpicc-deal-scoring-framework.pdf" download><span class="ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v9m0 0L5 7m3 3l3-3M2 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>MEDDPICC scoring framework (PDF)</a>
           <a class="ghost" href="https://github.com/stephenjang-creator/sales_forecast" target="_blank" rel="noopener">↗ Source</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="proj-eyebrow">Quota &amp; territory planning · Full-stack + agents <span class="tag">LIVE</span></div>
+        <div class="proj-title">Territory &amp; Quota Designer</div>
+        <div class="proj-lead">A quota-first capacity planner for the CRO and Head of Sales Ops. It standardizes quota by role from pay, carves each rep's territory <b>backward</b> to support that number, and flags every seller whose book can't generate the pipeline to hit quota, <b>before the plan locks and comp letters go out</b>. It doesn't just diagnose: every gap comes with a <b>one-click fix</b> that recomputes the whole plan.</div>
+
+        <div class="proj-outcome">
+          <span class="oc-k">Business outcome</span>
+          <b>Catches under-covered reps before the year starts, not at the Q3 QBR.</b> On the demo plan (36 reps, a $7M/quarter target, $28M/year) it shows 25 of 36 covered and SMB short $688K of pipeline, then offers three fixes with the tradeoff named: re-tag 102 accounts into SMB, lower SMB's quota, or accept a lower coverage target, plus a safe hiring plan and a cost-of-sale check. Change any assumption and every number recomputes.
+        </div>
+
+        <div class="proj-grid">
+          <div>
+            <h4>The problem it solves</h4>
+            <p>Most orgs set quota by <b>title</b>, from the pay band, not by the size of the book in front of the rep. Nothing guarantees that territory holds enough pipeline to produce the number at the team's real win rates. When it doesn't, the rep is under-covered before day one: attainment slips, cost-of-sale climbs, and the forecast built on those quotas was optimistic from the start. You usually find out at the QBR.</p>
+          </div>
+          <div>
+            <h4>How it inverts the problem</h4>
+            <p>It flips the usual order. <b>Quota is the fixed input</b>, standardized by role and anchored on OTE; the territory is what you build to support it. The carve packs each book to a pipeline-coverage target, and a reverse waterfall proves it against real stage win-rates, so an under-covered rep shows up as an explicit dollar shortfall instead of a number buried in an uneven carve.</p>
+          </div>
+        </div>
+
+        <div class="proj-sub">Business &amp; process impact</div>
+        <ul class="proj-impact">
+          <li><b>Standardizes quota by role, so comp is defensible</b>: same title and segment carry the same number, derived from pay, with no per-rep politics</li>
+          <li><b>Prices the plan before it locks</b>: total comp, cost-of-sale, and how both move across attainment scenarios, so a quota plan can't quietly break the cost-of-sale model</li>
+          <li><b>Every recommendation resolves the gap, it doesn't just flag it</b>: the re-tag lever moves real accounts and re-carves until every rep clears, so a planner acts instead of interpreting</li>
+          <li><b>Spreads a structural shortfall fairly</b>: when a segment can't cover, it raises the worst-covered rep's floor instead of starving one rep to over-fill another</li>
+          <li><b>Surfaces the gap honestly</b>: when a segment simply lacks the pipeline, it says so and shows where the pipeline actually is, rather than hiding it in the carve</li>
+        </ul>
+
+        <div class="proj-sub">Tech stack &amp; architecture</div>
+        <div class="stack-badges">
+          <span class="badge key">Deterministic planning engine</span>
+          <span class="badge key">One-click applyable fixes</span>
+          <span class="badge">Python</span>
+          <span class="badge">FastAPI</span>
+          <span class="badge">pydantic</span>
+          <span class="badge">Model Context Protocol (MCP)</span>
+          <span class="badge">Vanilla-JS dashboard</span>
+          <span class="badge">pytest · ruff · black</span>
+          <span class="badge">Render</span>
+        </div>
+
+        <details class="uh">
+          <summary>Under the hood: engineering rigor &amp; the proof</summary>
+          <div class="uh-body">
+            <ul class="proj-rigor">
+              <li>Deterministic, tested core: every number the UI shows comes from pure Python in the core engine; 85 unit tests, ruff + black clean, and a fixed seed reproduces the plan exactly</li>
+              <li>Recommendations are computed and returned as an applyable settings delta, with round-trip tests proving each fix clears the issue it targets; the re-tag lever re-carves until every rep clears, not just the segment aggregate</li>
+              <li>Work-back carve vs a naive equal-split under the same quotas: identical total gap ($688K, structural), but the carve lifts the worst-covered rep's floor 2.22× to 2.33× and cuts off-home-region assignments 63.2%</li>
+              <li>Conversion rates resolve rep &gt; segment &gt; global, and the engine records which tier supplied each number, so any waterfall figure carries an audit trail</li>
+              <li>The same engine is an MCP server (15 read-only tools) an agent can drive to interrogate and fix a plan; the model explains and proposes, the deterministic core owns every number. All data synthetic</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="proj-links">
+          <a class="primary" href="https://territory-quota-designer.onrender.com/" target="_blank" rel="noopener">▸ Live demo</a>
+          <a class="ghost" href="https://github.com/stephenjang-creator/territory_quota_designer" target="_blank" rel="noopener">↗ Source</a>
         </div>
       </div>
 
