@@ -370,7 +370,7 @@
 
         <div class="proj-outcome">
           <span class="oc-k">Business outcome</span>
-          <b>Catches under-covered reps before the year starts, not at the Q3 QBR.</b> On the demo plan (14 reps, a $2.86M/quarter target) it shows 10 of 14 covered and SMB short $233K of pipeline, then offers three fixes with the tradeoff named: re-tag 36 accounts into SMB, lower SMB's quota, or accept a lower coverage target, plus a safe hiring plan and a cost-of-sale check. Change any assumption and every number recomputes.
+          <b>Catches under-covered reps before the year starts, not at the Q3 QBR.</b> On the demo plan (36 reps, a $7M/quarter target, $28M/year) it shows 25 of 36 covered and SMB short $688K of pipeline, then offers three fixes with the tradeoff named: re-tag 102 accounts into SMB, lower SMB's quota, or accept a lower coverage target, plus a safe hiring plan and a cost-of-sale check. Change any assumption and every number recomputes.
         </div>
 
         <div class="proj-grid">
@@ -412,7 +412,7 @@
             <ul class="proj-rigor">
               <li>Deterministic, tested core: every number the UI shows comes from pure Python in the core engine; 85 unit tests, ruff + black clean, and a fixed seed reproduces the plan exactly</li>
               <li>Recommendations are computed and returned as an applyable settings delta, with round-trip tests proving each fix clears the issue it targets; the re-tag lever re-carves until every rep clears, not just the segment aggregate</li>
-              <li>Work-back carve vs a naive equal-split under the same quotas: identical total gap ($233K, structural), but the carve lifts the worst-covered rep's floor 2.24× to 2.43× and cuts off-home-region assignments 41.6%</li>
+              <li>Work-back carve vs a naive equal-split under the same quotas: identical total gap ($688K, structural), but the carve lifts the worst-covered rep's floor 2.22× to 2.33× and cuts off-home-region assignments 63.2%</li>
               <li>Conversion rates resolve rep &gt; segment &gt; global, and the engine records which tier supplied each number, so any waterfall figure carries an audit trail</li>
               <li>The same engine is an MCP server (15 read-only tools) an agent can drive to interrogate and fix a plan; the model explains and proposes, the deterministic core owns every number. All data synthetic</li>
             </ul>
