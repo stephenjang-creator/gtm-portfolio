@@ -431,7 +431,7 @@
       <div class="project">
         <div class="proj-eyebrow">Quota &amp; territory planning · Full-stack + agents <span class="tag">LIVE</span></div>
         <div class="proj-title">Territory &amp; Quota Designer</div>
-        <div class="proj-lead">A quota-first capacity planner for the CRO and Head of Sales Ops. It standardizes quota by role from pay, carves each rep's territory <b>backward</b> to support that number, and flags every seller whose book can't generate the pipeline to hit quota, <b>before the plan locks and comp letters go out</b>. It doesn't just diagnose: every gap comes with a <b>one-click fix</b> that recomputes the whole plan.</div>
+        <div class="proj-lead">A quota-first capacity planner for the CRO and Head of Sales Ops. It standardizes quota by role from pay, carves each rep's territory <b>backward</b> to support that number, and flags every seller whose book can't generate the pipeline to hit quota, <b>before the plan locks and comp letters go out</b>. It doesn't just diagnose: every gap comes with a <b>one-click fix</b> that recomputes the whole plan, and you can <b>ask it in plain English</b> for grounded, auditable answers.</div>
 
         <div class="proj-outcome">
           <span class="oc-k">Business outcome</span>
@@ -456,16 +456,19 @@
           <li><b>Every recommendation resolves the gap, it doesn't just flag it</b>: the re-tag lever moves real accounts and re-carves until every rep clears, so a planner acts instead of interpreting</li>
           <li><b>Spreads a structural shortfall fairly</b>: when a segment can't cover, it raises the worst-covered rep's floor instead of starving one rep to over-fill another</li>
           <li><b>Surfaces the gap honestly</b>: when a segment simply lacks the pipeline, it says so and shows where the pipeline actually is, rather than hiding it in the carve</li>
+          <li><b>Ask the plan in plain English</b>: "which segment is most at risk?" or "how many reps should I hire?" answers from the same engine with real, auditable numbers, not a chatbot guessing</li>
         </ul>
 
         <div class="proj-sub">Tech stack &amp; architecture</div>
         <div class="stack-badges">
           <span class="badge key">Deterministic planning engine</span>
           <span class="badge key">One-click applyable fixes</span>
+          <span class="badge key">Natural-language Ask</span>
           <span class="badge">Python</span>
           <span class="badge">FastAPI</span>
           <span class="badge">pydantic</span>
           <span class="badge">Model Context Protocol (MCP)</span>
+          <span class="badge">Anthropic API (optional)</span>
           <span class="badge">Vanilla-JS dashboard</span>
           <span class="badge">pytest · ruff · black</span>
           <span class="badge">Render</span>
@@ -475,11 +478,12 @@
           <summary>Under the hood: engineering rigor &amp; the proof</summary>
           <div class="uh-body">
             <ul class="proj-rigor">
-              <li>Deterministic, tested core: every number the UI shows comes from pure Python in the core engine; 85 unit tests, ruff + black clean, and a fixed seed reproduces the plan exactly</li>
+              <li>Deterministic, tested core: every number the UI shows comes from pure Python in the core engine; 93 unit tests, ruff + black clean, and a fixed seed reproduces the plan exactly</li>
               <li>Recommendations are computed and returned as an applyable settings delta, with round-trip tests proving each fix clears the issue it targets; the re-tag lever re-carves until every rep clears, not just the segment aggregate</li>
               <li>Work-back carve vs a naive equal-split under the same quotas: identical total gap ($688K, structural), but the carve lifts the worst-covered rep's floor 2.22× to 2.33× and cuts off-home-region assignments 63.2%</li>
               <li>Conversion rates resolve rep &gt; segment &gt; global, and the engine records which tier supplied each number, so any waterfall figure carries an audit trail</li>
-              <li>The same engine is an MCP server (15 read-only tools) an agent can drive to interrogate and fix a plan; the model explains and proposes, the deterministic core owns every number. All data synthetic</li>
+              <li>Natural-language Ask over the same engine: a deterministic router answers recognized questions offline with no API key and names the function behind each answer, so every figure is auditable; with an Anthropic key, free-form questions route to a Claude tool-use loop over the same functions</li>
+              <li>Also an MCP server (15 read-only tools) with a standalone runnable agent that spawns it over stdio and drives a Claude loop end to end; the model explains and proposes, the deterministic core owns every number. All data synthetic</li>
             </ul>
           </div>
         </details>
